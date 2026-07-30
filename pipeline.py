@@ -34,17 +34,14 @@ def fetch_ukhsa_data():
     return df
 
 def validate_data(df):
-    """
-    Runs automated assertion checks to ensure data quality before modeling.
-    """
-    assert not df.empty, "Assertion Failed: Dataframe is empty!"
-    assert df['y'].isnull().sum() == 0, "Assertion Failed: Missing values found in target metric!"
-    assert df['ds'].is_monotonic_increasing, "Assertion Failed: Dates are not strictly ascending!"
+    assert not df.empty, "Assertion Failed: Dataframe is empty"
+    assert df['y'].isnull().sum() == 0, "Assertion Failed: Missing values found in target metric"
+    assert df['ds'].is_monotonic_increasing, "Assertion Failed: Dates are not strictly ascending"
     print("All data quality checks passed.")
 
 def run_forecast(df, forecast_days=30):
     """
-    Fits a Prophet time-series model with a 95% confidence interval for policy forecasting.
+    Fits a Prophet time-series model with a 95% confidence interval.
     """
     print(f"Fitting Prophet model for a {forecast_days}-day forecast horizon...")
     
@@ -70,7 +67,7 @@ if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
     
     raw_data = fetch_ukhsa_data()
-    print(f"Retrieved {len(raw_data)} daily records from UKHSA.")
+    print(f"Retrieved {len(raw_data)}")
     
     validate_data(raw_data)
     
@@ -80,4 +77,4 @@ if __name__ == "__main__":
     output_path = os.path.join("data", "forecast_results.csv")
     forecast_df.to_csv(output_path, index=False)
     
-    print(f"Pipeline run complete! Forecast dataset saved to {output_path}")
+    print(f"Forecast dataset saved to {output_path}")
