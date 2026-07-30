@@ -2,7 +2,7 @@ name: Weekly Public Health Pipeline
 
 on:
   schedule:
-    - cron: '0 3 * * 1'
+    - cron: '0 3 * * 1'  # Runs automatically every Monday at 3:00 AM UTC
   workflow_dispatch:
 
 permissions:
@@ -24,7 +24,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: health_surveillance
-          environment-file: environment.yml
+          environment-file: backend_env.yml
           auto-activate: false
 
       - name: Execute Pipeline Script
