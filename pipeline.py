@@ -39,7 +39,7 @@ def validate_data(df):
     assert df['ds'].is_monotonic_increasing, "Assertion Failed: Dates are not strictly ascending"
     print("All data quality checks passed.")
 
-def run_forecast(df, forecast_days=30):
+def run_forecast(df, forecast_days=365):
     """
     Fits a Prophet time-series model with a 95% confidence interval.
     """
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     
     raw_data.to_csv("data/ukhsa_raw_data.csv", index=False)
     
-    forecast_df = run_forecast(raw_data, forecast_days=30)
+    forecast_df = run_forecast(raw_data, forecast_days=365)
     output_path = os.path.join("data", "forecast_results.csv")
     forecast_df.to_csv(output_path, index=False)
     
