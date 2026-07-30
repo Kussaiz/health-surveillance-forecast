@@ -1,0 +1,36 @@
+name: Weekly Public Health Pipeline
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update-forecast:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash -el {0}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Conda Environment
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: health_surveillance
+          environment-file: environment.yml
+          auto-activate-base: false
+
+      - name: Execute Pipeline Script
+        run: python pipeline.py
+
+      - name: Commit and Push Updated Forecast Data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git commit -m "Automated weekly pipeline run: update UKHSA forecast data" || exit 0
+          git push
