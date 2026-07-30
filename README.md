@@ -1,9 +1,5 @@
 # Public Health Surveillance & Forecasting Pipeline
 
-[![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B.svg)](https://share.streamlit.io/)
-[![GitHub Actions](https://img.shields.io/badge/Automated-CI%2FCD-2ea44f)](https://github.com/features/actions)
-
 ## Project Overview
 This repository contains an automated pipeline that fetches, validates, and forecasts daily respiratory infection data for England.
 
