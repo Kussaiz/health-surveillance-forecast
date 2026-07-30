@@ -44,7 +44,7 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True)
 
-st.header("Briefing for Policymakers")
+st.header("Briefing")
 
 start_forecast = forecast.iloc[0]['yhat']
 end_forecast = forecast.iloc[-1]['yhat']
