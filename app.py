@@ -52,11 +52,11 @@ percent_change = ((end_forecast - start_forecast) / start_forecast) * 100
 
 st.subheader("Automated Trend Analysis")
 if percent_change > 5:
-    st.error(f"The model forecasts a {percent_change:.1f}% increase in cases over the next 30 days.")
+    st.error(f"The model forecasts a {percent_change:.1f}% increase in cases over the next 365 days.")
 elif percent_change < -5:
-    st.success(f"The model forecasts a {abs(percent_change):.1f}% decrease in cases over the next 30 days.")
+    st.success(f"The model forecasts a {abs(percent_change):.1f}% decrease in cases over the next 365 days.")
 else:
-    st.info(f"The model forecasts relatively stable case counts (changing by {percent_change:.1f}%) over the next 30 days.")
+    st.info(f"The model forecasts relatively stable case counts (changing by {percent_change:.1f}%) over the next 365 days.")
 
 st.markdown("---")
 st.markdown("This dashboard updates automatically every Monday at 3:00 AM UTC.")
